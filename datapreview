@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+from  matplotlib import pyplot as plt
+import plotly.graph_objects as go
+import numpy as np
+import sys
+
+matplot = True
+plotly = False
+
+data = np.loadtxt(str(sys.argv[1])).transpose()
+if plotly :
+    fig = go.Figure()
+    fig.update_layout(template = 'plotly_dark')
+    fig.add_trace(go.Scatter(x=data[0], y=data[1],
+                    mode='lines+markers',
+                    name=''))
+    fig.show()
+elif matplot :
+    plt.style.use('dark_background')
+    fig=plt.figure(figsize=(10,5))
+    plt.plot(data[0],data[1])
+    plt.tight_layout()
+    plt.show(block=False)
+
+
+input('press enter')
+plt.close('all')
